@@ -7,13 +7,15 @@ export const dummyUsers: User[] = [
         name: "John Doe",
         image: "https://i.pravatar.cc/150?img=1",
         bio: "Software developer and tech enthusiast",
+        
     },
     {
         id: '2',
         username: "janedoe",
         name: "Jane Doe",
         image: "https://i.pravatar.cc/150?img=2",
-        bio: "Digital artist and creative thinker"
+        bio: "Digital artist and creative thinker",
+       
     },
     {
         id: '3',
@@ -21,6 +23,7 @@ export const dummyUsers: User[] = [
         name: "Alex smith",
         image: "https://i.pravatar.cc/150?img=3",
         bio: "Travel photographer and adventure seeker",
+       
     },
     {
         id: '4',
@@ -28,12 +31,20 @@ export const dummyUsers: User[] = [
         name: "Sarah Jones",
         image: "https://i.pravatar.cc/150?img=4",
         bio: "Fitness trainer and wellness coach",
+        
     },
     {
         id: '5',
         username: "mikebrown",
         name: "Mike Brown ",
         image: "https://i.pravatar.cc/150?img=5",
+        bio: "Entreorneur and startup founder"
+    },
+    {
+        id: '6',
+        username: "mikebrown",
+        name: "Mika Brown ",
+        image: "https://i.pravatar.cc/150?img=6",
         bio: "Entreorneur and startup founder"
     },
 ];
@@ -85,6 +96,16 @@ export const dummyPosts: Post[] = [
         content: "Congrats on the funding!",
         user_id: "5",
         user: dummyUsers[4],
+        parent_id: null,
+        parent: null,
+        replies: []
+    },
+    {
+        id: "6",
+        createdAt: "2024-05-01T10:00:D0Z",
+        content: "Congrats on the funding!",
+        user_id: "6",
+        user: dummyUsers[5],
         parent_id: null,
         parent: null,
         replies: []
