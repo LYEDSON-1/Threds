@@ -19,15 +19,6 @@ export default function NewPostScreen(){
             >           
             <Text className="text-lg font-bold text-white">username</Text>
 
-            <TextInput
-            value={text}
-            onChangeText={setText}
-            placeholder="What is on your mind?"  
-            placeholderTextColor="gray"         
-            multiline
-            numberOfLines={4}
-            />
-
             <View className="mt-auto">
                 <Pressable onPress={() => console.log('Post: ', text)}
                 className="self-end p-3 px-6 bg-white rounded-full"    
