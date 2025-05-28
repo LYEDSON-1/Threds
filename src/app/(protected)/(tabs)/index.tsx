@@ -10,12 +10,20 @@ export default function HomeScreen() {
     <FlatList 
     data={dummyPosts} renderItem={({item}) => <PostListItem post={item}/>} 
     ListHeaderComponent={() => (
+      <>
       <Link
         href='/new'
         className='p-4 text-3xl text-center text-blue-500'
       >
         new post
       </Link>
+      <Link
+        href='/login'
+        className='p-4 text-3xl text-center text-blue-500'
+      >
+        Login
+      </Link>
+      </>
     )}
     />
    
