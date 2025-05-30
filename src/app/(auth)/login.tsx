@@ -1,6 +1,7 @@
 import  { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert } from "react-native";
 import { Link } from "expo-router";
+import { supabase } from "@/lib/supabase";
 
 export default function LoginScreen() {
     const [email, setEmail] = useState("");
@@ -12,12 +13,16 @@ export default function LoginScreen() {
             Alert.alert("Erro", "Preencha todos os campos.");
             return;
         }
-        setIsLoading(true);
+        
         try {
-            // Simulação de requisição de login
-            await new Promise((resolve) => setTimeout(resolve, 2000));
-            // Aqui você pode adicionar a lógica de autenticação real
-            Alert.alert("Sucesso", "Login realizado com sucesso!");
+            setIsLoading(true);
+            
+        const {error} = await supabase.auth.signInWithPassword({
+             email,
+             password,
+         })
+          if (error) Alert.alert(error.message)
+            
         } catch (error) {
             Alert.alert("Erro", "Ocorreu um erro ao fazer login.");
         } finally {
@@ -55,7 +60,7 @@ export default function LoginScreen() {
                 className="w-full px-4 text-white border rounded-lg border-neutral-700 bg-neutral-800"
                 placeholder="Enter your password"
                 placeholderTextColor="#687280"
-                keyboardType="visible-password"
+                keyboardType="default"
                 secureTextEntry
                 value={password}
                 onChangeText={setPassword}
@@ -81,7 +86,7 @@ export default function LoginScreen() {
         <View className="items-center w-full mt-4">
             <Text className="text-gray-400">
             Não tem uma conta?{" "}
-            <Link href="/signup" asChild>
+            <Link href="/signup" >
                         <Text className="font-semibold text-blue-500">
                             Cadastre-se
                         </Text>

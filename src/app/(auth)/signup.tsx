@@ -1,23 +1,36 @@
 import  { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert } from "react-native";
 import { Link } from "expo-router";
+import { supabase } from "@/lib/supabase";
 
 export default function SignupScreen() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleLogin = async () => {
+     
+
+    const handleSignUp = async () => {
         if (!email || !password) {
             Alert.alert("Erro", "Preencha todos os campos.");
             return;
         }
-        setIsLoading(true);
+        
         try {
-            // Simulação de requisição de login
-            await new Promise((resolve) => setTimeout(resolve, 2000));
-            // Aqui você pode adicionar a lógica de autenticação real
-            Alert.alert("Sucesso", "Login realizado com sucesso!");
+      setIsLoading(true);
+      
+      const {
+      data: { session },
+      error,
+      
+    } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+    
+    if (error) Alert.alert(error.message)
+        
+    if (!session) Alert.alert('Please check your inbox for email verification!')
         } catch (error) {
             Alert.alert("Erro", "Ocorreu um erro ao fazer login.");
         } finally {
@@ -55,7 +68,7 @@ export default function SignupScreen() {
                 className="w-full px-4 text-white border rounded-lg border-neutral-700 bg-neutral-800"
                 placeholder="Enter your password"
                 placeholderTextColor="#687280"
-                keyboardType="visible-password"
+                keyboardType="default"
                 secureTextEntry
                 value={password}
                 onChangeText={setPassword}
@@ -65,7 +78,7 @@ export default function SignupScreen() {
     {/* Botão de Login */}
     <TouchableOpacity
     className="items-center w-full py-3 mt-6 bg-white rounded-lg"
-    onPress={handleLogin}
+    onPress={handleSignUp}
     disabled={isLoading}
                 >
       {isLoading ? (
@@ -80,15 +93,14 @@ export default function SignupScreen() {
         {/* Texto para cadastro */}
         <View className="items-center w-full mt-4">
             <Text className="text-gray-400">
-            Já tem uma conta?{" "}
-            <Link href="/login" asChild>
+        Já tem uma conta?{" "}
+        <Link href="/login" asChild>
             <Text className="font-semibold text-blue-500">
-                            Sign up
-                        </Text>
-                        </Link>
-                        
-                    </Text>
-                </View>
+                Login
+            </Text>
+        </Link>
+    </Text>
+</View>
             </View>
         </View>
     );
