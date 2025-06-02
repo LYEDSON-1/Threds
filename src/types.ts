@@ -1,15 +1,16 @@
 export type User = {
+    avatar_url: string | undefined;
    
     id: string;
     username: string;
     name: string;
-    image: string;
     bio: string;
 };
 
 export type Post = {
+    
     id: string;
-    createdAt: string;
+    created_at: string;
     content: string;
 
     user_id: string;

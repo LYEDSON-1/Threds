@@ -5,7 +5,7 @@ export const dummyUsers: User[] = [
         id: '1',
         username: "johndoe",
         name: "John Doe",
-        image: "https://i.pravatar.cc/150?img=1",
+        avatar_url: "https://i.pravatar.cc/150?img=1",
         bio: "Software developer and tech enthusiast",
         
     },
@@ -13,7 +13,7 @@ export const dummyUsers: User[] = [
         id: '2',
         username: "janedoe",
         name: "Jane Doe",
-        image: "https://i.pravatar.cc/150?img=2",
+        avatar_url: "https://i.pravatar.cc/150?img=2",
         bio: "Digital artist and creative thinker",
        
     },
@@ -21,7 +21,7 @@ export const dummyUsers: User[] = [
         id: '3',
         username: "alexsmith",
         name: "Alex smith",
-        image: "https://i.pravatar.cc/150?img=3",
+        avatar_url: "https://i.pravatar.cc/150?img=3",
         bio: "Travel photographer and adventure seeker",
        
     },
@@ -29,7 +29,7 @@ export const dummyUsers: User[] = [
         id: '4',
         username: "sarahjones",
         name: "Sarah Jones",
-        image: "https://i.pravatar.cc/150?img=4",
+        avatar_url: "https://i.pravatar.cc/150?img=4",
         bio: "Fitness trainer and wellness coach",
         
     },
@@ -37,15 +37,8 @@ export const dummyUsers: User[] = [
         id: '5',
         username: "mikebrown",
         name: "Mike Brown ",
-        image: "https://i.pravatar.cc/150?img=5",
-        bio: "Entreorneur and startup founder"
-    },
-    {
-        id: '6',
-        username: "mikebrown",
-        name: "Mika Brown ",
-        image: "https://i.pravatar.cc/150?img=6",
-        bio: "Entreorneur and startup founder"
+        bio: "Entreorneur and startup founder",
+        avatar_url: "https://i.pravatar.cc/150?img=5"
     },
 ];
 
@@ -100,14 +93,5 @@ export const dummyPosts: Post[] = [
         parent: null,
         replies: []
     },
-    {
-        id: "6",
-        createdAt: "2024-05-01T10:00:D0Z",
-        content: "Congrats on the funding!",
-        user_id: "6",
-        user: dummyUsers[5],
-        parent_id: null,
-        parent: null,
-        replies: []
-    }
+    
 ];
