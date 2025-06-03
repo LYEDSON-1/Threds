@@ -31,7 +31,7 @@ export default function NewPostScreen() {
             return;
         }
         setText("");
-        Alert.alert("Sucesso", "Post criado!");
+        
     };
 
     return (

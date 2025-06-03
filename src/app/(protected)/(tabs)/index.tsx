@@ -1,28 +1,36 @@
-import { FlatList } from "react-native";
+import { ActivityIndicator, FlatList, Text } from "react-native";
 import PostListItem from '@/components/PostListitem';
 import { Link } from 'expo-router';
-import { useEffect, useState } from 'react';
-import { Post } from '@/types';
 import { supabase } from '@/lib/supabase';
+import { useQuery } from "@tanstack/react-query";
 
-export default function HomeScreen() {
-  const [posts, setPosts] = useState<Post[]>([]);
+ const fetchPosts = async () => {
+      const { data } = await supabase.from('posts').select('*, user:profiles(*)').throwOnError();
+      
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const { data, error } = await supabase.from('posts').select('*, user:profiles(*)');
-      if (error) {
-        console.error(error);
-      }
-      setPosts(data as Post[]);
+     return data;
+    
     };
 
-    fetchPosts();
-  }, []);
+export default function HomeScreen() {
+
+  const {data, isLoading, error} = useQuery({
+    queryKey: ['posts'],
+    queryFn: fetchPosts,
+  });
+  
+ 
+ if (isLoading){
+  return <ActivityIndicator/>
+ }
+ 
+ if (error){
+  return <Text className="text-red-500">{error.message}</Text>
+ }
 
   return (
     <FlatList
-      data={posts}
+      data={data}
       renderItem={({ item }) => <PostListItem post={item} />}
       keyExtractor={(item) => item.id.toString()}
       ListHeaderComponent={() => (
